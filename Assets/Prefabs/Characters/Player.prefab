@@ -1374,7 +1374,6 @@ GameObject:
   - component: {fileID: 9122015124924969455}
   - component: {fileID: 9122015124924969456}
   - component: {fileID: 1300577902}
-  - component: {fileID: 131664994565077346}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1467,22 +1466,6 @@ CapsuleCollider:
   m_Height: 1.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &131664994565077346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7077687454657612539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717fa54641fefc74e985fbab3d2b330d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HealthUIPrefab: {fileID: 2009065541957158362, guid: 418df1c15a81b4e4b9be2d321af37837, type: 3}
-  barPoint: {fileID: 7936841794420794104}
-  alwaysVisible: 0
-  visibleTime: 3
 --- !u!1 &7077687454657612541
 GameObject:
   m_ObjectHideFlags: 0
