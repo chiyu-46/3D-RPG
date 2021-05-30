@@ -26,14 +26,31 @@ public class PlayerController : MonoBehaviour
         stopDistance = agent.stoppingDistance;
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        StartCoroutine(FindMouseManager());
+    }
+
+    IEnumerator FindMouseManager()
+    {
+        while (MouseManager.Instance == null)
+        {
+            yield return null;
+        }
         MouseManager.Instance.OnEnemyClicked += EventAttack;
         MouseManager.Instance.OnMouseClicked += MoveToTarget;
+    }
+    private void Start()
+    {
         GameManager.Instance.RigisterPlayer(characterStates);
         lastAttactTime = characterStates.coolDown;
     }
 
+    private void OnDisable()
+    {
+        MouseManager.Instance.OnEnemyClicked -= EventAttack;
+        MouseManager.Instance.OnMouseClicked -= MoveToTarget;
+    }
 
     private void Update()
     {

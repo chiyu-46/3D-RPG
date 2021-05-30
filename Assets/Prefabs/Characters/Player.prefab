@@ -1374,6 +1374,8 @@ GameObject:
   - component: {fileID: 9122015124924969455}
   - component: {fileID: 9122015124924969456}
   - component: {fileID: 1300577902}
+  - component: {fileID: 181529879}
+  - component: {fileID: 181529878}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1466,6 +1468,38 @@ CapsuleCollider:
   m_Height: 1.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!54 &181529879
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077687454657612539}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &181529878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077687454657612539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2b8cac424509340b37ce82b681c454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateData: {fileID: 11400000, guid: 8292b76d38c4784429234702baf49bf8, type: 2}
+  attackData: {fileID: 11400000, guid: 4719e3cb7a9b1d54999d9fed8e83c192, type: 2}
+  isCritical: 0
+  characterData: {fileID: 0}
 --- !u!1 &7077687454657612541
 GameObject:
   m_ObjectHideFlags: 0
