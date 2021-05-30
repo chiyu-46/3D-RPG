@@ -31,13 +31,14 @@ public class SceneController : Singleton<SceneController>
 
     IEnumerator Transition(string sceneName, TransitionDestination.DestinationType destinationType)
     {
-        //TODO:保存数据
-        
+        SaveManager.Instance.SavePlayerData();
         if (SceneManager.GetActiveScene().name != sceneName)
         {
             yield return SceneManager.LoadSceneAsync(sceneName);
             TransitionDestination transitionDestination = GetDestination(destinationType);
             yield return Instantiate(playerPrefab, transitionDestination.transform.position,transitionDestination.transform.rotation);
+            SaveManager.Instance.LoadPlayerData();
+            yield break;
         }
         else
         {
