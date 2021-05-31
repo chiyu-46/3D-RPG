@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.Instance.RigisterPlayer(characterStates);
         StartCoroutine(FindMouseManager());
     }
 
@@ -42,8 +43,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.Instance.RigisterPlayer(characterStates);
         lastAttactTime = characterStates.coolDown;
+        SaveManager.Instance.LoadPlayerData();
     }
 
     private void OnDisable()

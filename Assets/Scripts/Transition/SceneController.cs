@@ -1,19 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class SceneController : Singleton<SceneController>
+public class SceneController : Singleton<SceneController>, IEndGameObserver
 {
     private GameObject player;
     public GameObject playerPrefab;
+    public SceneFade sceneFadePrefab;
     private NavMeshAgent playerAgent;
+    private bool fadeFinished;
 
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this);
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.AddObserver(this);
+        fadeFinished = true;
     }
 
     public void TransitionToDestination(TransitionPoint transitionPoint)
@@ -64,5 +73,54 @@ public class SceneController : Singleton<SceneController>
             }
         }
         return null;
+    }
+
+    public void TransitionToFirstLevel()
+    {
+        StartCoroutine(LoadLevel("Game"));
+    }
+    
+    public void TransitionToLoadGame()
+    {
+        StartCoroutine(LoadLevel(SaveManager.Instance.SceneName));
+    }
+    
+    IEnumerator LoadLevel(string scene)
+    {
+        SceneFade fade = Instantiate(sceneFadePrefab);
+        if (scene != "")
+        {
+            yield return StartCoroutine(fade.FadeOut(2.5f));
+            yield return SceneManager.LoadSceneAsync(scene);
+            yield return player = Instantiate(playerPrefab,GameManager.Instance.GetEntrance().position,
+                GameManager.Instance.GetEntrance().rotation);
+            //保存数据
+            SaveManager.Instance.SavePlayerData();
+            yield return StartCoroutine(fade.FadeIn(2.5f));
+            yield break;
+        }
+    }
+
+    public void TransitionToMain()
+    {
+        StartCoroutine(LoadMain());
+    }
+    
+    IEnumerator LoadMain()
+    {
+        SceneFade fade = Instantiate(sceneFadePrefab);
+        yield return StartCoroutine(fade.FadeOut(2.5f));
+        yield return SceneManager.LoadSceneAsync("Main");
+        yield return StartCoroutine(fade.FadeIn(2.5f));
+        yield break;
+    }
+
+    public void EndNotify()
+    {
+        if (fadeFinished)
+        {
+            fadeFinished = false;
+            StartCoroutine(LoadMain());
+        }
     }
 }
