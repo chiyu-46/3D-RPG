@@ -12,6 +12,7 @@ public class ItemPickUp : MonoBehaviour
         {
             //TODO:拾取物品，添加到背包
             InventoryManager.Instance.inventoryData.AddItem(itemData,itemData.itemAmount);
+            InventoryManager.Instance.inventoryUI.RefreshUI();
             //装备武器
             //GameManager.Instance.playerStats.EquipWeapon(itemData);
             //销毁被拾取物品
