@@ -26,12 +26,6 @@ public class PlayerController : MonoBehaviour
         stopDistance = agent.stoppingDistance;
     }
 
-    private void OnEnable()
-    {
-        GameManager.Instance.RigisterPlayer(characterStates);
-        StartCoroutine(FindMouseManager());
-    }
-
     IEnumerator FindMouseManager()
     {
         while (MouseManager.Instance == null)
@@ -43,6 +37,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        GameManager.Instance.RigisterPlayer(characterStates);
+        StartCoroutine(FindMouseManager());
         lastAttactTime = characterStates.coolDown;
         SaveManager.Instance.LoadPlayerData();
     }
