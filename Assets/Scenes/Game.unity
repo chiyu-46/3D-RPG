@@ -135,13 +135,14 @@ GameObject:
   - component: {fileID: 4648704}
   - component: {fileID: 4648703}
   - component: {fileID: 4648702}
+  - component: {fileID: 4648706}
   m_Layer: 5
   m_Name: Inventory Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &4648702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +224,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &4648706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2c56d381da9df419c871145cd8587a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryData: {fileID: 11400000, guid: 9a41d532135548f46a3b656553a94330, type: 2}
 --- !u!1 &18785077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,7 +2202,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240688567}
-  m_LocalRotation: {x: 0.14603852, y: 0.000000008510955, z: -0.0000000012563971, w: 0.9892789}
+  m_LocalRotation: {x: 0.14603853, y: -0.000000008510955, z: 0.0000000012563972, w: 0.9892789}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4035,6 +4049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateData: {fileID: 11400000, guid: 6aa7f86cf3bf79b4aa6a00ecebf159a2, type: 2}
   attackData: {fileID: 11400000, guid: 60bb59729a474db48a8980b8ff5ef45a, type: 2}
+  weaponSlot: {fileID: 0}
   isCritical: 0
   characterData: {fileID: 0}
 --- !u!1001 &560447976
@@ -62410,10 +62425,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3190759207610457721, guid: c4f5982b9dc7b6846a8866d37629b5c4, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3607375444358973291, guid: c4f5982b9dc7b6846a8866d37629b5c4, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -67028,7 +67039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1552048441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68855,6 +68866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateData: {fileID: 11400000, guid: 6aa7f86cf3bf79b4aa6a00ecebf159a2, type: 2}
   attackData: {fileID: 11400000, guid: 60bb59729a474db48a8980b8ff5ef45a, type: 2}
+  weaponSlot: {fileID: 0}
   isCritical: 0
   characterData: {fileID: 0}
 --- !u!1001 &1822829315

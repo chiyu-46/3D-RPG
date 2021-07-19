@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 177cc23822cc3e2409a4e617c694e128, type: 3}
-  m_Name: player BaseAttackData
+  m_Name: Sword Data
   m_EditorClassIdentifier: 
-  attackRange: 1
+  attackRange: 1.8
   skillRange: 0
-  coolDown: 0.7
-  minDamge: 4
-  maxDamge: 6
+  coolDown: 1
+  minDamge: 5
+  maxDamge: 8
   criticalMultiplier: 2
-  criticalChance: 0.5
+  criticalChance: 0.2

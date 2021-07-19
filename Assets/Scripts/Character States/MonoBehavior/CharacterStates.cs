@@ -10,6 +10,8 @@ public class CharacterStates : MonoBehaviour
     
     public AttackData_SO attackData;
 
+    [Header("Weapon")] 
+    public Transform weaponSlot;
     [HideInInspector] 
     public bool isCritical;
     [HideInInspector]
@@ -258,6 +260,20 @@ public class CharacterStates : MonoBehaviour
         }
 
         return (int) coreDamage;
+    }
+
+    #endregion
+
+    #region Equip Weapon
+
+    public void EquipWeapon(ItemData_SO weapon)
+    {
+        if (weapon.weaponPrefab)
+        {
+            Instantiate(weapon.weaponPrefab, weaponSlot);
+            //TODO:更新属性（根据等级等条件）
+            attackData.ApplyWeaponData(weapon.weaponData);
+        }
     }
 
     #endregion
