@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using UnityEngine.EventSystems;
 
 public class MouseManager : Singleton<MouseManager>
 {
@@ -20,7 +21,8 @@ public class MouseManager : Singleton<MouseManager>
     void Update()
     {
         SetCursorTexture();
-        MouseControl();
+        if (!InteractWithUI())
+            MouseControl();
     }
 
     void SetCursorTexture()
@@ -75,6 +77,17 @@ public class MouseManager : Singleton<MouseManager>
             {
                 OnMouseClicked? .Invoke(hitInfo.point);
             }
+        }
+    }
+    bool InteractWithUI()
+    {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -9,6 +9,8 @@ public class CharacterStates : MonoBehaviour
     public CharacterData_SO templateData;
     
     public AttackData_SO attackData;
+    //用于备份attackData作为基础攻击力
+    private AttackData_SO baseAttackData;
 
     [Header("Weapon")] 
     public Transform weaponSlot;
@@ -16,13 +18,16 @@ public class CharacterStates : MonoBehaviour
     public bool isCritical;
     [HideInInspector]
     public CharacterData_SO characterData;
-    
+
+
     private void Awake()
     {
         if (templateData)
         {
             characterData = Instantiate(templateData);
         }
+
+        baseAttackData = Instantiate(attackData);
     }
 
     #region Read from Data_SO
@@ -272,9 +277,28 @@ public class CharacterStates : MonoBehaviour
         {
             Instantiate(weapon.weaponPrefab, weaponSlot);
             //TODO:更新属性（根据等级等条件）
+            //TODO:切换武器动画
             attackData.ApplyWeaponData(weapon.weaponData);
         }
     }
 
+    public void UnEquiWeapon()
+    {
+        if (weaponSlot.transform.childCount != 0)
+        {
+            for (int i = 0; i < weaponSlot.transform.childCount; i++)
+            {
+                Destroy(weaponSlot.GetChild(i).gameObject);
+            }
+        }
+        attackData.ApplyWeaponData(baseAttackData);
+        //TODO:切换武器动画
+    }
+
+    public void ChangeWeapon(ItemData_SO weapon)
+    {
+        UnEquiWeapon();
+        EquipWeapon(weapon);
+    }
     #endregion
 }
