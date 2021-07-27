@@ -20,3 +20,5 @@ MonoBehaviour:
   stackable: 0
   weaponPrefab: {fileID: 439091189551115874, guid: 02940126bb94dc84dbc2940760a0db09, type: 3}
   weaponData: {fileID: 11400000, guid: 41e3aee993deb784d8f0388c0c54972a, type: 2}
+  weaponAnimator: {fileID: 22100000, guid: 6e4e74990d6f0784cae5e48af64d31c5, type: 2}
+  itemData: {fileID: 0}

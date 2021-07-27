@@ -41,6 +41,7 @@ public class SceneController : Singleton<SceneController>, IEndGameObserver
     IEnumerator Transition(string sceneName, TransitionDestination.DestinationType destinationType)
     {
         SaveManager.Instance.SavePlayerData();
+        InventoryManager.Instance.SaveData();
         if (SceneManager.GetActiveScene().name != sceneName)
         {
             yield return SceneManager.LoadSceneAsync(sceneName);

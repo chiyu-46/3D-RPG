@@ -11,6 +11,8 @@ public class CharacterStates : MonoBehaviour
     public AttackData_SO attackData;
     //用于备份attackData作为基础攻击力
     private AttackData_SO baseAttackData;
+    //用于卸下武器时还原原动画控制器
+    private RuntimeAnimatorController baseController;
 
     [Header("Weapon")] 
     public Transform weaponSlot;
@@ -28,6 +30,7 @@ public class CharacterStates : MonoBehaviour
         }
 
         baseAttackData = Instantiate(attackData);
+        baseController = GetComponent<Animator>().runtimeAnimatorController;
     }
 
     #region Read from Data_SO
@@ -277,8 +280,10 @@ public class CharacterStates : MonoBehaviour
         {
             Instantiate(weapon.weaponPrefab, weaponSlot);
             //TODO:更新属性（根据等级等条件）
-            //TODO:切换武器动画
+            //切换武器动画
+            GetComponent<Animator>().runtimeAnimatorController = weapon.weaponAnimator;
             attackData.ApplyWeaponData(weapon.weaponData);
+            //InventoryManager.Instance.UpdateStatesText(MaxHealth,minDamge,maxDamge);
         }
     }
 
@@ -292,7 +297,8 @@ public class CharacterStates : MonoBehaviour
             }
         }
         attackData.ApplyWeaponData(baseAttackData);
-        //TODO:切换武器动画
+        //切换武器动画
+        GetComponent<Animator>().runtimeAnimatorController = baseController;
     }
 
     public void ChangeWeapon(ItemData_SO weapon)

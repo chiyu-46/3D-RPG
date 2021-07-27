@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
@@ -11,6 +12,10 @@ public class InventoryManager : Singleton<InventoryManager>
         public RectTransform originalParent;
     }
     [Header("Inventory Data")]
+    public InventoryData_SO inventoryDataTemplate;
+    public InventoryData_SO actionDataTemplate;
+    public InventoryData_SO equipmentDataTemplate;
+    //以下三个时上面三个的副本,以上三个为模板
     public InventoryData_SO inventoryData;
     public InventoryData_SO actionData;
     public InventoryData_SO equipmentData;
@@ -22,15 +27,82 @@ public class InventoryManager : Singleton<InventoryManager>
 
     [Header("Drag Canvas")] 
     public Canvas dragCanvas;
-
     public DragData currentDrag;
+
+    [Header("UI Panel")]
+    public GameObject bagPanel;
+    public GameObject statesPanel;
+    private bool isOpen = false;//此面板是否处于打开状态
+
+    [Header("States Text")] 
+    public Text healthText;
+    public Text attackText;
+
+    [Header("ToolTip")] 
+    public ItemToolTip toolTip;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        //从模板数据实例化真正使用的数据
+        if (!inventoryDataTemplate)
+        {
+            inventoryData = Instantiate(inventoryDataTemplate);
+        }
+        if (!actionDataTemplate)
+        {
+            actionData = Instantiate(actionDataTemplate);
+        }
+        if (!equipmentDataTemplate)
+        {
+            equipmentData = Instantiate(equipmentDataTemplate);
+        }
+    }
+
     private void Start()
     {
+        LoadData();
         inventoryUI.RefreshUI();
         actionUI.RefreshUI();
         equipmentUI.RefreshUI();
     }
 
+    private void Update()
+    {
+        //按B键，打开或关闭此面板
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            isOpen = !isOpen;
+            bagPanel.SetActive(isOpen);
+            statesPanel.SetActive(isOpen);
+        }
+        UpdateStatesText(GameManager.Instance.playerStats.CurrentHealth, GameManager.Instance.playerStats.minDamge,
+            GameManager.Instance.playerStats.maxDamge);
+    }
+
+    public void UpdateStatesText(int health, int min, int max)
+    {
+        healthText.text = health.ToString();
+        attackText.text = min + "-" + max;
+    }
+
+    #region Save&Load
+
+    public void SaveData()
+    {
+        SaveManager.Instance.Save(inventoryData,inventoryData.name);
+        SaveManager.Instance.Save(actionData,actionData.name);
+        SaveManager.Instance.Save(equipmentData,equipmentData.name);
+    }
+
+    public void LoadData()
+    {
+        SaveManager.Instance.Load(inventoryData,inventoryData.name);
+        SaveManager.Instance.Load(actionData,actionData.name);
+        SaveManager.Instance.Load(equipmentData,equipmentData.name);
+    }
+
+    #endregion
     #region 检查拖拽物品是否在每一个Slot范围内
 
     public bool CheakInInventoryUI(Vector3 position)
