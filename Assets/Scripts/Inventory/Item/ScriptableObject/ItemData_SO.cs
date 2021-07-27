@@ -20,6 +20,8 @@ public class ItemData_SO : ScriptableObject
 
     [Header("Weapon")] 
     public GameObject weaponPrefab;
-
     public AttackData_SO weaponData;
+    
+    [Header("Useable Item")] 
+    public UseableData_SO itemData;
 }

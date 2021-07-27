@@ -301,4 +301,21 @@ public class CharacterStates : MonoBehaviour
         EquipWeapon(weapon);
     }
     #endregion
+
+    #region Apply Data Change
+
+    //使用道具进行生命值恢复时调用
+    public void ApplyHealth(int amount)
+    {
+        if (CurrentHealth + amount <= MaxHealth)
+        {
+            CurrentHealth += amount;
+        }
+        else
+        {
+            CurrentHealth = MaxHealth;
+        }
+    }
+
+    #endregion
 }

@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public enum SlotType{ BAG, WEAPON, ARMOR, ACTION}
-public class SlotHolder : MonoBehaviour
+
+public class SlotHolder : MonoBehaviour, IPointerClickHandler
 {
     public ItemUI itemUI;
     public SlotType slotType;
@@ -41,4 +43,21 @@ public class SlotHolder : MonoBehaviour
     }
 
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.clickCount >= 2)
+        {
+            UseItem();
+        }
+    }
+
+    private void UseItem()
+    {
+        if (itemUI.GetItem().itemType == ItemType.Useable && itemUI.Bag.items[itemUI.Index].amount > 0)
+        {
+            GameManager.Instance.playerStats.ApplyHealth(itemUI.GetItem().itemData.healthPoint);
+            itemUI.Bag.items[itemUI.Index].amount -= 1;
+        }
+        UpdateItem();
+    }
 }
