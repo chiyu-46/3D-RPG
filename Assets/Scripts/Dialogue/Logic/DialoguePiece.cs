@@ -10,5 +10,7 @@ public class DialoguePiece
     [TextArea]
     public string text;     //对话文本
 
+    public QuestData_SO quest;//包含的任务
+
     public List<DialogueOption> options = new List<DialogueOption>();
 }
