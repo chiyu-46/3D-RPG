@@ -150,4 +150,47 @@ public class InventoryManager : Singleton<InventoryManager>
         return false;
     }
     #endregion
+
+    #region 检测任务物品
+
+    //遍历背包，确定当前是否存在任务物品，存在则刷新任务进度。
+    public void CheckQuestItemInBug(string questItemName)
+    {
+        foreach (var item in inventoryData.items)
+        {
+            if (item.itemData != null)
+            {
+                if (item.itemData.itemName == questItemName)
+                {
+                    QuestManager.Instance.UpdateQuestProgress(item.itemData.itemName,item.amount);
+                }
+            }
+        }
+        
+        foreach (var item in actionData.items)
+        {
+            if (item.itemData != null)
+            {
+                if (item.itemData.itemName == questItemName)
+                {
+                    QuestManager.Instance.UpdateQuestProgress(item.itemData.itemName,item.amount);
+                }
+            }
+        }
+    }
+
+    #endregion
+
+    #region 检测背包和快捷栏中的任务物品
+
+    public InventoryItem QuestItemInBag(ItemData_SO questItem)
+    {
+        return inventoryData.items.Find(i => i.itemData == questItem);
+    }
+    public InventoryItem QuestItemInAction(ItemData_SO questItem)
+    {
+        return actionData.items.Find(i => i.itemData == questItem);
+    }
+
+    #endregion
 }

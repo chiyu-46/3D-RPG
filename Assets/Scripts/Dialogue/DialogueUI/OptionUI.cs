@@ -34,6 +34,11 @@ public class OptionUI : MonoBehaviour
                 if (QuestManager.Instance.HaveQuest(newTask.questData))
                 {
                     //已有此任务则领取奖励
+                    if (QuestManager.Instance.GetTask(newTask.questData).IsComplete)
+                    {
+                        newTask.questData.GiveRewards();
+                        QuestManager.Instance.GetTask(newTask.questData).IsFinished = true;
+                    }
                 }
                 else
                 {
@@ -41,6 +46,12 @@ public class OptionUI : MonoBehaviour
                     QuestManager.Instance.tasks.Add(newTask);
                     //任务状态改为已开始（newTask为临时变量，直接更改不影响List内任务状态）
                     QuestManager.Instance.GetTask(newTask.questData).IsStarted = true;
+                    
+                    //接受任务时判断背包内是否有任务物品
+                    foreach (var requireItem in newTask.questData.RequireTargetName())
+                    {
+                        InventoryManager.Instance.CheckQuestItemInBug(requireItem);
+                    }
                 }
             }
         }

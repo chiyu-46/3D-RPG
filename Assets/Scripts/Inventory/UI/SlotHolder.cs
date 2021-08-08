@@ -61,6 +61,8 @@ public class SlotHolder : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             GameManager.Instance.playerStats.ApplyHealth(itemUI.GetItem().itemData.healthPoint);
             itemUI.Bag.items[itemUI.Index].amount -= 1;
+            //使用物品可能导致任务物品减少，需要更新任务状态
+            QuestManager.Instance.UpdateQuestProgress(itemUI.GetItem().itemName,-1);
         }
         UpdateItem();
     }

@@ -103,6 +103,11 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         {
             GetComponent<LootSpawner>().SpawnLoot();
         }
+        //死亡更新任务进度
+        if (QuestManager.IsInitialized && isDead)
+        {
+            QuestManager.Instance.UpdateQuestProgress(this.name,1);
+        }
     }
 
     void SwichStates()

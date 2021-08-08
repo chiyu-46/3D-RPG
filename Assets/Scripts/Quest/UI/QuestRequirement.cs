@@ -14,4 +14,22 @@ public class QuestRequirement : MonoBehaviour
         requireName = GetComponent<Text>();
         progressNumber = transform.GetChild(0).GetComponent<Text>();
     }
+
+    public void SetupRequirement(string name, int amount, int currentAmount)
+    {
+        requireName.text = name;
+        progressNumber.text = currentAmount.ToString() +" / " + amount.ToString();
+    }
+    
+    //任务完成后不应更新进度信息
+    public void SetupRequirement(string name, bool isFinished)
+    {
+        if (isFinished)
+        {
+            requireName.text = name;
+            progressNumber.text = "完成";
+            requireName.color = Color.gray;
+            progressNumber.color =Color.gray;
+        }
+    }
 }

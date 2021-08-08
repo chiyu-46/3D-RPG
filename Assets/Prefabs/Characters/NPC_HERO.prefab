@@ -822,6 +822,8 @@ GameObject:
   - component: {fileID: 4171003101301021989}
   - component: {fileID: 4171003101301022426}
   - component: {fileID: 4171003101301021988}
+  - component: {fileID: 1835885684668042}
+  - component: {fileID: 4767266100856891926}
   m_Layer: 3
   m_Name: NPC_HERO
   m_TagString: Item
@@ -888,7 +890,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4171710405048243628}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
   m_Height: 1
@@ -907,6 +909,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.8, z: 1}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &1835885684668042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171710405048243628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ed5dfa861082e4993b7f4a3f80c2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentData: {fileID: 11400000, guid: cfe2acd07b7f115468c484749df80428, type: 2}
+--- !u!114 &4767266100856891926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171710405048243628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb07eed258a8714da47a7b86d001e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDialogue: {fileID: 11400000, guid: cfe2acd07b7f115468c484749df80428, type: 2}
+  progressDialogue: {fileID: 11400000, guid: ee2a97ec44162fe4ca53ea7e74d6b101, type: 2}
+  completeDialogue: {fileID: 11400000, guid: fbb0ae800641526418b152337ad27320, type: 2}
+  finishDialogue: {fileID: 11400000, guid: 62e01785a906941419417047bba2aa9f, type: 2}
 --- !u!1 &4171849853102500960
 GameObject:
   m_ObjectHideFlags: 0

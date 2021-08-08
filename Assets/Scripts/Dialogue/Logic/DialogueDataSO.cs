@@ -10,7 +10,7 @@ public class DialogueDataSO : ScriptableObject
     public Dictionary<string, DialoguePiece> dialogueIndex = new Dictionary<string, DialoguePiece>();
 
 #if UNITY_EDITOR
-    void OnValidate()//仅在编辑器内执行导致打包游戏后字典空了
+    void OnValidate() //仅在编辑器内执行导致打包游戏后字典空了
     {
         dialogueIndex.Clear();
         foreach (var piece in dialoguePieces)
@@ -30,4 +30,18 @@ public class DialogueDataSO : ScriptableObject
         }
     }
 #endif
+
+    public QuestData_SO GetQuest()
+    {
+        QuestData_SO currentQuest = null;
+        foreach (var piece in dialoguePieces)
+        {
+            if (piece.quest != null)
+            {
+                currentQuest = piece.quest;
+            }
+        }
+        return currentQuest;
+    }
+
 }

@@ -29,6 +29,11 @@ public class MouseManager : Singleton<MouseManager>
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+        if (InteractWithUI())
+        {
+            Cursor.SetCursor(point,Vector2.zero, CursorMode.Auto);
+            return;
+        }
         if(Physics.Raycast(ray,out hitInfo))
         {
             //切换鼠标贴图
